@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 
 // Update these with your GitHub username and repository name
-const GITHUB_USERNAME = 'your-username'; // Replace with your GitHub username
-const GITHUB_REPO = 'your-repo-name'; // Replace with your repository name
+const GITHUB_USERNAME: string = 'HarshAryan06'; // Replace with your GitHub username
+const GITHUB_REPO: string = 'Job_Tracker_application'; // Replace with your repository name
 
 interface GitHubRepo {
   stargazers_count: number;

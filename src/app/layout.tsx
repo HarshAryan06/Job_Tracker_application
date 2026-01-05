@@ -36,7 +36,7 @@ export default function RootLayout({
         >
           <div className="min-h-screen flex flex-col selection:bg-primary/20">
             <Header />
-            <main className="flex-1 max-w-6xl mx-auto px-6 py-8 md:py-10 w-full mb-20 md:mb-0 bg-background/80 backdrop-blur-xl">
+            <main className="flex-1 max-w-6xl mx-auto px-6 py-8 md:py-10 w-full mb-20 md:mb-0">
               {children}
             </main>
             <MobileNav />

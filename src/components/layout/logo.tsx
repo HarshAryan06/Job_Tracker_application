@@ -8,15 +8,16 @@ interface LogoProps {
   size?: 'sm' | 'md' | 'lg';
   showText?: boolean;
   variant?: 'default' | 'icon-only';
+  hideIcon?: boolean;
 }
 
 const sizeMap = {
-  sm: { icon: 24, text: 'text-base' },
-  md: { icon: 32, text: 'text-lg' },
-  lg: { icon: 40, text: 'text-xl' },
+  sm: { icon: 20, text: 'text-sm' },
+  md: { icon: 28, text: 'text-base' },
+  lg: { icon: 36, text: 'text-lg' },
 };
 
-export function Logo({ className, size = 'md', showText = true, variant = 'default' }: LogoProps) {
+export function Logo({ className, size = 'md', showText = true, variant = 'default', hideIcon = false }: LogoProps) {
   const iconSize = sizeMap[size].icon;
   const textSize = sizeMap[size].text;
   const [isDark, setIsDark] = useState(false);
@@ -146,11 +147,23 @@ export function Logo({ className, size = 'md', showText = true, variant = 'defau
 
   return (
     <div className={cn('flex items-center gap-2.5', className)}>
-      {logoIcon}
-      <span className={cn('font-bold tracking-tight', textSize)}>
-        <span className="gradient-text-primary">Job</span>
-        <span className="text-foreground">Tracker</span>
-      </span>
+      {!hideIcon && logoIcon}
+      <div className="flex flex-col leading-[1.1]">
+        <span className={cn(
+          'font-black tracking-[-0.02em] uppercase', 
+          textSize, 
+          'gradient-text-primary'
+        )}>
+          Job
+        </span>
+        <span className={cn(
+          'font-black tracking-[-0.02em] uppercase', 
+          textSize, 
+          'text-foreground'
+        )}>
+          Tracker
+        </span>
+      </div>
     </div>
   );
 }

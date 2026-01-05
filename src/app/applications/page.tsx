@@ -22,7 +22,8 @@ import {
   TrendingUp,
   Clock,
   CheckCircle,
-  XCircle
+  XCircle,
+  X
 } from 'lucide-react';
 
 export default function ApplicationsPage() {
@@ -39,6 +40,13 @@ export default function ApplicationsPage() {
   );
 
   const stats = useMemo(() => calculateStats(applications), [applications]);
+
+  const hasActiveFilters = searchTerm !== '' || statusFilter !== 'All';
+
+  const clearFilters = () => {
+    setSearchTerm('');
+    setStatusFilter('All');
+  };
 
   const statusCounts = useMemo(() => {
     return {
@@ -90,7 +98,7 @@ export default function ApplicationsPage() {
         </div>
 
         {/* Quick Stats Bar */}
-        <div className="flex flex-wrap gap-2 animate-fade-in-up stagger-1">
+        <div className="flex flex-wrap items-center gap-2 animate-fade-in-up stagger-1">
           {[
             { filter: 'All', icon: LayoutGrid, count: statusCounts.all, activeClass: 'gradient-bg text-white' },
             { filter: ApplicationStatus.APPLIED, icon: Clock, count: statusCounts.applied, activeClass: 'bg-blue-500 text-white', hoverClass: 'hover:bg-blue-500/10' },
@@ -108,6 +116,17 @@ export default function ApplicationsPage() {
               {item.filter === 'All' ? 'All' : item.filter} ({item.count})
             </Badge>
           ))}
+          {hasActiveFilters && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={clearFilters}
+              className="h-8 px-3 gap-1.5 text-xs font-medium transition-all duration-300 hover:scale-105 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/50"
+            >
+              <X className="h-3 w-3" />
+              Clear Filters
+            </Button>
+          )}
         </div>
         
         {/* Search and Filter Bar */}

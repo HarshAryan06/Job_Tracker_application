@@ -4,9 +4,11 @@ import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Sun, Moon } from 'lucide-react';
+import { Sun } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Logo } from './logo';
+import { GitHubStarButton } from '@/components/features/github-star-button';
+import MoonIcon from '@/components/ui/moon-icon';
 
 const navItems = [
   { href: '/', label: 'Dashboard' },
@@ -20,11 +22,11 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-xl border-b border-border">
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
         <Link href="/" className="cursor-pointer group">
           <div className="group-hover:scale-105 transition-transform duration-300">
-            <Logo size="md" showText className="hidden sm:flex" />
-            <Logo size="md" showText={false} className="sm:hidden" />
+            <Logo size="sm" showText hideIcon className="sm:hidden" />
+            <Logo size="md" showText hideIcon className="hidden sm:flex" />
           </div>
         </Link>
         
@@ -50,17 +52,18 @@ export function Header() {
           })}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <Button
-            variant="outline"
-            size="icon"
-            className="rounded-full"
+        <div className="flex items-center gap-2 sm:gap-3">
+          <GitHubStarButton />
+          <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-border/50 bg-card/50 hover:bg-card/80 active:scale-95 transition-all duration-200 flex items-center justify-center group touch-manipulation"
+            aria-label="Toggle theme"
           >
-            <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            <span className="sr-only">Toggle theme</span>
-          </Button>
+            <Sun className="h-3.5 w-3.5 sm:h-4 sm:w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-muted-foreground group-hover:text-foreground" />
+            <div className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100">
+              <MoonIcon size={14} color="currentColor" className="text-muted-foreground group-hover:text-foreground" />
+            </div>
+          </button>
         </div>
       </div>
     </header>

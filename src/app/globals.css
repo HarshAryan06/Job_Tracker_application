@@ -470,6 +470,13 @@
   transform: skewX(-15deg);
 }
 
+.dark .stats-card::before {
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.05),
+      transparent);
+}
+
 .stats-card:hover::before {
   left: 150%;
 }
@@ -504,6 +511,13 @@
       rgba(255, 255, 255, 0.25),
       transparent);
   transition: left 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dark .btn-shine::before {
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.15),
+      transparent);
 }
 
 .btn-shine:hover::before {
@@ -597,8 +611,8 @@
 
 /* ===== LOADING SPINNER ===== */
 .spinner {
-  border: 3px solid rgba(255, 255, 255, 0.2);
-  border-top-color: white;
+  border: 3px solid color-mix(in srgb, var(--foreground) 10%, transparent);
+  border-top-color: var(--primary);
   border-radius: 50%;
   animation: spin-slow 0.8s linear infinite;
 }
@@ -628,6 +642,10 @@
   background: rgba(249, 115, 22, 0.25);
 }
 
+.dark ::selection {
+  background: rgba(249, 115, 22, 0.3);
+}
+
 /* ===== NAVIGATION ===== */
 .nav-item {
   @apply flex items-center gap-2 px-4 py-2 text-sm font-medium text-muted-foreground transition-all duration-300 rounded-lg;
@@ -646,6 +664,10 @@
 .empty-state-icon {
   @apply mx-auto mb-4 w-16 h-16 rounded-2xl flex items-center justify-center;
   background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(251, 191, 36, 0.1));
+}
+
+.dark .empty-state-icon {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(251, 191, 36, 0.1));
 }
 
 /* ===== REDUCE MOTION ===== */
