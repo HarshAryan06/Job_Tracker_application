@@ -3,10 +3,11 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import { Header } from '@/components/layout/header';
+import { Footer } from '@/components/layout/footer';
 import { MobileNav } from '@/components/layout/mobile-nav';
 import { Toaster } from '@/components/ui/sonner';
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
 });
@@ -39,6 +40,7 @@ export default function RootLayout({
             <main className="flex-1 max-w-6xl mx-auto px-6 py-8 md:py-10 w-full mb-20 md:mb-0">
               {children}
             </main>
+            <Footer />
             <MobileNav />
           </div>
           <Toaster position="top-right" richColors />

@@ -23,15 +23,15 @@ export function useGitHubStars() {
         
         // Check cache first
         const cached = GitHubApiService.getCache();
-        if (cached) {
+          if (cached) {
           setStarCount(cached.count);
-          setIsLoading(false);
-          return;
-        }
+                setIsLoading(false);
+                return;
+              }
 
         // Fetch from API
         const count = await GitHubApiService.fetchStars();
-        setStarCount(count);
+              setStarCount(count);
         GitHubApiService.setCache(count);
         setError(null);
       } catch (err: unknown) {
@@ -39,7 +39,7 @@ export function useGitHubStars() {
         setError(err instanceof Error ? err.message : 'Unknown error');
         // Try to use cached value on error
         const cached = GitHubApiService.getCache();
-        if (cached) {
+          if (cached) {
           setStarCount(cached.count);
         }
       } finally {
