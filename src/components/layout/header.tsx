@@ -4,8 +4,9 @@ import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Briefcase, Sun, Moon } from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Logo } from './logo';
 
 const navItems = [
   { href: '/', label: 'Dashboard' },
@@ -20,14 +21,11 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-xl border-b border-border">
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-        <Link href="/" className="flex items-center gap-3 cursor-pointer group">
-          <div className="w-9 h-9 gradient-bg rounded-xl flex items-center justify-center shadow-lg glow-primary group-hover:scale-105 transition-transform">
-            <Briefcase className="h-4 w-4 text-white" />
+        <Link href="/" className="cursor-pointer group">
+          <div className="group-hover:scale-105 transition-transform duration-300">
+            <Logo size="md" showText className="hidden sm:flex" />
+            <Logo size="md" showText={false} className="sm:hidden" />
           </div>
-          <h1 className="text-lg font-extrabold tracking-tight hidden sm:block">
-            <span className="gradient-text-primary">Job</span>
-            <span className="text-foreground">Tracker</span>
-          </h1>
         </Link>
         
         <nav className="hidden md:flex items-center gap-1">
