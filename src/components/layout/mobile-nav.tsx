@@ -9,7 +9,25 @@ import { Home, Briefcase, Plus, Search, Sun, Moon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { SearchModal } from '@/components/features/search-modal';
 
-const navItems = [
+type NavItemWithHref = {
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+  label: string;
+  isMain?: boolean;
+  isSearch?: never;
+};
+
+type NavItemSearch = {
+  href?: never;
+  icon: React.ComponentType<{ className?: string }>;
+  label: string;
+  isMain?: never;
+  isSearch: true;
+};
+
+type NavItem = NavItemWithHref | NavItemSearch;
+
+const navItems: NavItem[] = [
   { href: '/', icon: Home, label: 'Home' },
   { href: '/applications', icon: Briefcase, label: 'Apps' },
   { href: '/add', icon: Plus, label: 'Add', isMain: true },
@@ -32,24 +50,6 @@ export function MobileNav() {
         {navItems.map((item) => {
           const Icon = item.icon;
           
-          // Handle main button (always has href)
-          if (item.isMain && 'href' in item && item.href) {
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="flex flex-col items-center justify-center relative h-full z-10 group"
-              >
-                <div className="w-12 h-12 gradient-bg rounded-full flex items-center justify-center shadow-lg glow-primary border-4 border-background -mt-8 mb-1 pointer-events-auto transition-all duration-300 ease-out hover:scale-110 hover:shadow-xl hover:shadow-primary/50 active:scale-95 group-hover:rotate-12">
-                  <Icon className="h-5 w-5 text-white transition-transform duration-300 group-hover:scale-110" />
-                </div>
-                <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-wide transition-colors duration-300 group-hover:text-primary">
-                  {item.label}
-                </span>
-              </Link>
-            );
-          }
-          
           // Handle search button (no href)
           if (item.isSearch) {
             return (
@@ -66,12 +66,28 @@ export function MobileNav() {
             );
           }
           
-          // Handle regular nav items (must have href)
-          if (!('href' in item) || !item.href) {
-            return null;
+          // At this point, TypeScript knows item has href (discriminated union)
+          const href = item.href;
+          
+          // Handle main button
+          if (item.isMain) {
+            return (
+              <Link
+                key={href}
+                href={href}
+                className="flex flex-col items-center justify-center relative h-full z-10 group"
+              >
+                <div className="w-12 h-12 gradient-bg rounded-full flex items-center justify-center shadow-lg glow-primary border-4 border-background -mt-8 mb-1 pointer-events-auto transition-all duration-300 ease-out hover:scale-110 hover:shadow-xl hover:shadow-primary/50 active:scale-95 group-hover:rotate-12">
+                  <Icon className="h-5 w-5 text-white transition-transform duration-300 group-hover:scale-110" />
+                </div>
+                <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-wide transition-colors duration-300 group-hover:text-primary">
+                  {item.label}
+                </span>
+              </Link>
+            );
           }
           
-          const href = item.href;
+          // Handle regular nav items
           const itemPath = href.split('?')[0];
           const isActive = pathname === itemPath || pathname === href;
           
