@@ -292,12 +292,22 @@ export default function AddApplicationPage() {
       </Card>
 
       {/* Submit Section */}
-      <div className="flex flex-col sm:flex-row gap-3 pt-2 animate-fade-in-up stagger-4">
+      <div className="flex flex-col sm:flex-row gap-3 pt-2 animate-fade-in-up stagger-4 justify-end">
+        <Link href="/applications">
+          <Button
+            type="button"
+            variant="outline"
+            size="default"
+            className="w-full sm:w-auto px-6 h-10 transition-colors duration-300 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30"
+          >
+            Cancel
+          </Button>
+        </Link>
         <Button
           type="submit"
           variant="gradient"
           size="default"
-          className="flex-1 gap-2 group h-10"
+          className="w-full sm:w-auto px-6 gap-2 group h-10"
           disabled={isSubmitting}
         >
           {isSubmitting ? (
@@ -312,16 +322,6 @@ export default function AddApplicationPage() {
             </>
           )}
         </Button>
-        <Link href="/applications" className="flex-shrink-0">
-          <Button
-            type="button"
-            variant="outline"
-            size="default"
-            className="w-full sm:w-auto px-6 h-10 transition-colors duration-300 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30"
-          >
-            Cancel
-          </Button>
-        </Link>
       </div>
     </form>
   );

@@ -25,6 +25,12 @@ export interface Application {
   salaryRange?: string;
 }
 
+export interface DateNote {
+  date: string; // ISO date string (YYYY-MM-DD)
+  note: string;
+  applications?: string[]; // Application IDs linked to this date
+}
+
 export interface DashboardStats {
   total: number;
   interviews: number;
@@ -35,5 +41,4 @@ export interface DashboardStats {
 }
 
 export type ViewType = 'dashboard' | 'list' | 'add' | 'details';
-
 

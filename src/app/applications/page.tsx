@@ -172,16 +172,26 @@ export default function ApplicationsPage() {
               <Button
                 variant={viewMode === 'grid' ? 'default' : 'ghost'}
                 size="icon-sm"
-                onClick={() => setViewMode('grid')}
-                className="rounded-lg transition-all duration-200"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setViewMode('grid');
+                }}
+                className="rounded-lg transition-all duration-200 touch-manipulation"
+                aria-label="Grid view"
+                aria-pressed={viewMode === 'grid'}
               >
                 <LayoutGrid className="h-4 w-4" />
               </Button>
               <Button
                 variant={viewMode === 'list' ? 'default' : 'ghost'}
                 size="icon-sm"
-                onClick={() => setViewMode('list')}
-                className="rounded-lg transition-all duration-200"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setViewMode('list');
+                }}
+                className="rounded-lg transition-all duration-200 touch-manipulation"
+                aria-label="List view"
+                aria-pressed={viewMode === 'list'}
               >
                 <List className="h-4 w-4" />
               </Button>

@@ -13,7 +13,7 @@ import MoonIcon from '@/components/ui/moon-icon';
 const navItems = [
   { href: '/', label: 'Dashboard' },
   { href: '/applications', label: 'Applications' },
-  { href: '/add', label: 'Add New' },
+  { href: '/calendar', label: 'Calendar' },
 ];
 
 export function Header() {

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Analytics } from "@vercel/analytics/next"
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/providers/theme-provider';
@@ -38,14 +37,13 @@ export default function RootLayout({
         >
           <div className="min-h-screen flex flex-col selection:bg-primary/20">
             <Header />
-            <main className="flex-1 max-w-6xl mx-auto px-6 py-8 md:py-10 w-full mb-20 md:mb-0">
+            <main className="flex-1 max-w-6xl mx-auto px-6 py-8 md:py-10 w-full mb-8 md:mb-0">
               {children}
             </main>
             <Footer />
             <MobileNav />
           </div>
           <Toaster position="top-right" richColors />
-          <Analytics />
         </ThemeProvider>
       </body>
     </html>
