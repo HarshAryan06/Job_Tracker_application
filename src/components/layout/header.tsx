@@ -29,7 +29,7 @@ export function Header() {
             <Logo size="lg" showText hideIcon className="hidden sm:flex" />
           </div>
         </Link>
-        
+
         <nav className="hidden md:flex items-center gap-1.5">
           {navItems.map((item) => {
             const isActive = pathname === item.href;

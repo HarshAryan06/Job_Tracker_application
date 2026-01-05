@@ -1,22 +1,49 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { Moon, Sun } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Moon, Sun, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
+function VisitorCount() {
+    const [count, setCount] = useState<number | null>(null);
+
+    useEffect(() => {
+        fetch('/api/visitors')
+            .then(res => res.json())
+            .then(data => {
+                if (data.visitors) {
+                    setCount(data.visitors);
+                }
+            })
+            .catch(err => console.error('Failed to load visitors', err));
+    }, []);
+
+    if (count === null) return null;
+
+    return (
+        <span className="flex items-center gap-1.5 text-xs font-medium bg-muted/50 px-2 py-0.5 rounded-full">
+            <Users className="w-3 h-3" />
+            {count.toLocaleString()} visits
+        </span>
+    );
+}
 
 export function Footer() {
     const { theme, setTheme } = useTheme();
 
     return (
-        <footer className="hidden md:block py-8 px-6">
+        <footer className="hidden md:block py-4 px-6">
             <div className="max-w-6xl mx-auto">
-                <div className="border-t border-border/30 pt-6">
+                <div className="border-t border-border/30 pt-4">
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
-                        <p className="text-sm text-muted-foreground">
-                            Built with <span className="text-amber-500">🍵</span> by{' '}
-                            <span className="font-semibold gradient-text-primary">Harsh</span>
-                            <span className="mx-2">•</span>
-                            © 2026 All rights reserved
+                        <p className="text-sm text-muted-foreground flex items-center gap-2">
+                            <span>Built with <span className="text-amber-500">🍵</span> by{' '}
+                                <span className="font-semibold gradient-text-primary">Harsh</span></span>
+                            <span className="hidden sm:inline">•</span>
+                            <span>© 2026 All rights reserved</span>
+                            <span className="hidden sm:inline">•</span>
+                            <VisitorCount />
                         </p>
                         <div className="flex items-center gap-4">
                             {/* X (Twitter) */}
@@ -62,7 +89,7 @@ export function Footer() {
                         </div>
                     </div>
                 </div>
-                <div className="border-t border-border/30 mt-6"></div>
+                <div className="border-t border-border/30 mt-4"></div>
             </div>
         </footer>
     );
