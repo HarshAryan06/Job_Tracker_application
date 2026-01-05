@@ -66,8 +66,8 @@ export function MobileNav() {
             );
           }
           
-          // At this point, TypeScript knows item has href (discriminated union)
-          const href = item.href;
+          // TypeScript narrowing: after isSearch check, item is NavItemWithHref
+          const href = (item as NavItemWithHref).href;
           
           // Handle main button
           if (item.isMain) {
