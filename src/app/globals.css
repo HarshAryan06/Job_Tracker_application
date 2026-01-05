@@ -79,7 +79,7 @@
   --sidebar-accent-foreground: #171717;
   --sidebar-border: #e5e5e5;
   --sidebar-ring: #f97316;
-  
+
   --gradient-start: #f97316;
   --gradient-mid: #fb923c;
   --gradient-end: #fbbf24;
@@ -117,7 +117,7 @@
   --sidebar-accent-foreground: #fafafa;
   --sidebar-border: #262626;
   --sidebar-ring: #f97316;
-  
+
   --gradient-start: #f97316;
   --gradient-mid: #fb923c;
   --gradient-end: #fbbf24;
@@ -142,6 +142,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
@@ -221,6 +222,7 @@
     opacity: 0;
     transform: translateY(8px) translateZ(0);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) translateZ(0);
@@ -232,6 +234,7 @@
     opacity: 0;
     transform: translateY(16px) translateZ(0);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) translateZ(0);
@@ -243,6 +246,7 @@
     opacity: 0;
     transform: translateY(-16px) translateZ(0);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) translateZ(0);
@@ -254,6 +258,7 @@
     opacity: 0;
     transform: translateX(-16px) translateZ(0);
   }
+
   to {
     opacity: 1;
     transform: translateX(0) translateZ(0);
@@ -265,6 +270,7 @@
     opacity: 0;
     transform: translateX(16px) translateZ(0);
   }
+
   to {
     opacity: 1;
     transform: translateX(0) translateZ(0);
@@ -276,6 +282,7 @@
     opacity: 0;
     transform: scale(0.95) translateZ(0);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateZ(0);
@@ -283,27 +290,36 @@
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) translateZ(0);
   }
+
   50% {
     transform: translateY(-6px) translateZ(0);
   }
 }
 
 @keyframes pulse-soft {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.7;
   }
 }
 
 @keyframes glow-pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
   }
+
   50% {
     box-shadow: 0 0 30px rgba(249, 115, 22, 0.5);
   }
@@ -313,18 +329,23 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 @keyframes blob-drift {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) scale(1) translateZ(0);
   }
+
   33% {
     transform: translate(10px, -10px) scale(1.02) translateZ(0);
   }
+
   66% {
     transform: translate(-5px, 5px) scale(0.98) translateZ(0);
   }
@@ -384,20 +405,37 @@
 }
 
 /* ===== STAGGER DELAYS ===== */
-.stagger-1 { animation-delay: 0.1s; }
-.stagger-2 { animation-delay: 0.2s; }
-.stagger-3 { animation-delay: 0.3s; }
-.stagger-4 { animation-delay: 0.4s; }
-.stagger-5 { animation-delay: 0.5s; }
-.stagger-6 { animation-delay: 0.6s; }
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+
+.stagger-4 {
+  animation-delay: 0.4s;
+}
+
+.stagger-5 {
+  animation-delay: 0.5s;
+}
+
+.stagger-6 {
+  animation-delay: 0.6s;
+}
 
 /* ===== SMOOTH TRANSITIONS ===== */
 
 /* Card hover - smooth and subtle */
 .card-hover {
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-              border-color 0.3s ease;
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease;
   transform: translateZ(0);
 }
 
@@ -424,12 +462,10 @@
   left: -100%;
   width: 60%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.08),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.08),
+      transparent);
   transition: left 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   transform: skewX(-15deg);
 }
@@ -463,12 +499,10 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.25),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.25),
+      transparent);
   transition: left 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -616,6 +650,7 @@
 
 /* ===== REDUCE MOTION ===== */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

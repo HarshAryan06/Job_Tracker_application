@@ -30,6 +30,8 @@ export interface DashboardStats {
   interviews: number;
   offers: number;
   pending: number;
+  rejected: number;
+  applied: number;
 }
 
 export type ViewType = 'dashboard' | 'list' | 'add' | 'details';
