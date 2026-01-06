@@ -147,14 +147,13 @@
     @apply text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
     position: relative;
-    background: 
-      linear-gradient(135deg, 
-        var(--background) 0%, 
+    background:
+      linear-gradient(135deg,
+        var(--background) 0%,
         color-mix(in srgb, var(--background) 98%, var(--primary)) 25%,
-        color-mix(in srgb, var(--background) 96%, var(--primary)) 50%, 
+        color-mix(in srgb, var(--background) 96%, var(--primary)) 50%,
         color-mix(in srgb, var(--background) 98%, var(--primary)) 75%,
-        var(--background) 100%
-      ),
+        var(--background) 100%),
       radial-gradient(ellipse at 15% 25%, color-mix(in srgb, var(--primary) 8%, transparent) 0%, transparent 45%),
       radial-gradient(ellipse at 85% 75%, color-mix(in srgb, var(--primary) 7%, transparent) 0%, transparent 45%),
       radial-gradient(ellipse at 50% 50%, color-mix(in srgb, var(--primary) 4%, transparent) 0%, transparent 55%);
@@ -180,7 +179,7 @@
   }
 
   /* Ensure content is above the pattern layers */
-  body > * {
+  body>* {
     position: relative;
     z-index: 1;
   }
