@@ -108,16 +108,22 @@ export default function CalendarPage() {
     setIsDialogOpen(false);
   };
 
-  const navigateMonth = (direction: 'prev' | 'next') => {
-    setCurrentDate(prev => {
-      const newDate = new Date(prev);
-      if (direction === 'prev') {
-        newDate.setMonth(prev.getMonth() - 1);
-      } else {
-        newDate.setMonth(prev.getMonth() + 1);
-      }
-      return newDate;
-    });
+  const navigateMonth = (direction: 'prev' | 'next' | 'today' | Date) => {
+    if (direction === 'today') {
+      setCurrentDate(new Date());
+    } else if (direction instanceof Date) {
+      setCurrentDate(direction);
+    } else {
+      setCurrentDate(prev => {
+        const newDate = new Date(prev);
+        if (direction === 'prev') {
+          newDate.setMonth(prev.getMonth() - 1);
+        } else {
+          newDate.setMonth(prev.getMonth() + 1);
+        }
+        return newDate;
+      });
+    }
   };
 
   const goToToday = () => {
@@ -137,12 +143,12 @@ export default function CalendarPage() {
   }
 
   return (
-    <div className="space-y-4 sm:space-y-6 animate-in fade-in duration-500">
+    <div className="space-y-2 sm:space-y-4 md:space-y-6 animate-in fade-in duration-500 pb-20 md:pb-0">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">Calendar</h1>
-          <p className="text-muted-foreground mt-1 text-sm sm:text-base hidden sm:block">View your applications and add notes</p>
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight">Calendar</h1>
+          <p className="text-muted-foreground mt-0.5 sm:mt-1 text-xs sm:text-sm md:text-base hidden sm:block">View your applications and add notes</p>
         </div>
       </div>
 
@@ -151,6 +157,8 @@ export default function CalendarPage() {
         onNavigate={(direction) => {
           if (direction === 'today') {
             goToToday();
+          } else if (direction instanceof Date) {
+            setCurrentDate(direction);
           } else {
             navigateMonth(direction);
           }

@@ -33,12 +33,14 @@ import {
   CalendarDays
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { DatePicker } from '@/components/ui/date-picker';
 
 export default function AddApplicationPage() {
   const router = useRouter();
   const { applications, addApplication } = useApplications();
   const { fileData, handleFileChange, clearFile } = useFileUpload();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [dateApplied, setDateApplied] = useState<string>(dateUtils.formatISO(new Date()));
 
   const stats = useMemo(() => calculateStats(applications), [applications]);
 
@@ -161,13 +163,15 @@ export default function AddApplicationPage() {
                 <CalendarDays className="h-3 w-3" />
                 Date Applied
               </Label>
-              <Input
-                id="dateApplied"
+              <input
+                type="hidden"
                 name="dateApplied"
-                type="date"
-                defaultValue={dateUtils.formatISO(new Date())}
+                value={dateApplied}
+              />
+              <DatePicker
+                value={dateApplied}
+                onChange={setDateApplied}
                 max={dateUtils.formatISO(new Date())}
-                className="h-10 rounded-lg border-2 input-animated input-focus-glow"
               />
               <p className="text-xs text-muted-foreground">
                 Select the date you applied to this position
@@ -292,36 +296,36 @@ export default function AddApplicationPage() {
       </Card>
 
       {/* Submit Section */}
-      <div className="flex flex-col sm:flex-row gap-3 pt-2 animate-fade-in-up stagger-4">
-        <Button
-          type="submit"
-          variant="gradient"
-          size="default"
-          className="flex-1 gap-2 group h-10"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? (
-            <>
-              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-              Saving...
-            </>
-          ) : (
-            <>
-              <Send className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-              Save Application
-            </>
-          )}
-        </Button>
-        <Link href="/applications" className="flex-shrink-0">
+      <div className="flex flex-col sm:flex-row items-center justify-end gap-2.5 pt-3 animate-fade-in-up stagger-4">
+        <Link href="/applications">
           <Button
             type="button"
             variant="outline"
-            size="default"
-            className="w-full sm:w-auto px-6 h-10 transition-colors duration-300 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30"
+            size="sm"
+            className="h-9 px-4 text-xs font-medium border-border/60 text-muted-foreground hover:text-foreground hover:border-border hover:bg-accent/50 transition-all duration-200 active:scale-[0.98]"
           >
             Cancel
           </Button>
         </Link>
+        <Button
+          type="submit"
+          variant="gradient"
+          size="sm"
+          className="h-9 px-5 gap-2 group font-medium text-sm"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? (
+            <>
+              <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              Saving...
+            </>
+          ) : (
+            <>
+              <Send className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              Save Application
+            </>
+          )}
+        </Button>
       </div>
     </form>
   );
@@ -329,17 +333,17 @@ export default function AddApplicationPage() {
   return (
     <div className="max-w-5xl mx-auto space-y-6">
       {/* Header */}
-      <header className="flex items-center gap-4 animate-fade-in pb-2">
+      <header className="flex items-center gap-4 animate-fade-in px-5">
         <Link href="/">
           <Button variant="ghost" size="icon" className="h-9 w-9 rounded-lg transition-all duration-300 hover:bg-accent hover:scale-105">
             <ArrowLeft className="h-4 w-4" />
           </Button>
         </Link>
-        <div className="flex items-center gap-3 flex-1">
+        <div className="flex items-center gap-3">
           <div className="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center shadow-lg">
             <FilePlus className="h-5 w-5 text-white" />
           </div>
-          <div>
+        <div>
             <h1 className="text-2xl font-extrabold tracking-tight">
               <span className="gradient-text-primary">Add</span> Application
             </h1>

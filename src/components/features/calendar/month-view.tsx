@@ -140,7 +140,7 @@ export function MonthView({ currentDate, applications, dateNotes, onDateClick, s
             {/* Day Headers */}
             <div className="grid grid-cols-7 border-b border-border">
                 {dayNames.map((day, idx) => (
-                    <div key={day} className="py-1.5 md:py-2 text-center text-[10px] sm:text-[11px] font-medium text-muted-foreground uppercase tracking-wider">
+                    <div key={day} className="py-1 sm:py-1.5 md:py-2 text-center text-[9px] sm:text-[10px] md:text-[11px] font-medium text-muted-foreground uppercase tracking-wider">
                         <span className="hidden sm:inline">{day}</span>
                         <span className="sm:hidden">{shortDayNames[idx]}</span>
                     </div>
@@ -172,37 +172,37 @@ export function MonthView({ currentDate, applications, dateNotes, onDateClick, s
                             key={index}
                             onClick={() => onDateClick(date)}
                             className={cn(
-                                "border-b border-r border-border min-h-[60px] sm:min-h-[80px] md:min-h-[100px] p-1 sm:p-1.5 md:p-2 transition-colors active:bg-accent/70 hover:bg-accent/50 cursor-pointer flex flex-col gap-0.5 sm:gap-1 overflow-hidden touch-manipulation",
+                                "border-b border-r border-border min-h-[50px] sm:min-h-[65px] md:min-h-[80px] lg:min-h-[100px] p-0.5 sm:p-1 md:p-1.5 lg:p-2 transition-colors active:bg-accent/70 hover:bg-accent/50 cursor-pointer flex flex-col gap-0.5 sm:gap-0.5 md:gap-1 overflow-hidden touch-manipulation",
                                 !isCurrentMonth && "bg-muted/20 dark:bg-muted/10 text-muted-foreground",
                                 shouldHighlight && "bg-primary/5 dark:bg-primary/10 border-primary/30",
                                 shouldDim && "opacity-40"
                             )}
                         >
-                            <div className="flex justify-center mb-0.5 sm:mb-1">
+                            <div className="flex justify-center mb-0 sm:mb-0.5 md:mb-1">
                                 <span className={cn(
-                                    "text-[10px] sm:text-xs font-medium h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 flex items-center justify-center rounded-full touch-manipulation",
+                                    "text-[10px] sm:text-xs md:text-sm font-semibold tracking-tight h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-7 lg:w-7 flex items-center justify-center rounded-full touch-manipulation transition-all",
                                     isCurrentDay
-                                        ? "bg-primary text-primary-foreground"
-                                        : isCurrentMonth ? "text-foreground" : "text-muted-foreground"
+                                        ? "bg-primary text-primary-foreground font-bold scale-110"
+                                        : isCurrentMonth ? "text-foreground font-semibold" : "text-muted-foreground font-medium opacity-60"
                                 )}>
                                     {displayLabel}
                                 </span>
                             </div>
 
-                            <div className="flex-1 flex flex-col gap-0.5 sm:gap-1 overflow-y-auto overflow-x-hidden">
+                            <div className="flex-1 flex flex-col gap-0.5 sm:gap-0.5 md:gap-1 overflow-y-auto overflow-x-hidden">
                                 {dateApps.slice(0, maxAppsToShow).map(app => (
-                                    <div key={app.id} className="bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-[9px] sm:text-[10px] px-1 sm:px-1.5 py-0.5 rounded truncate font-medium border-l-2 border-emerald-500 dark:border-emerald-400 transition-colors">
+                                    <div key={app.id} className="bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-[8px] sm:text-[9px] md:text-[10px] px-0.5 sm:px-1 md:px-1.5 py-0.5 rounded truncate font-medium border-l-2 border-emerald-500 dark:border-emerald-400 transition-colors">
                                         <span className="hidden sm:inline">{app.companyName}</span>
-                                        <span className="sm:hidden">{app.companyName.substring(0, 8)}{app.companyName.length > 8 ? '...' : ''}</span>
+                                        <span className="sm:hidden">{app.companyName.substring(0, 6)}{app.companyName.length > 6 ? '...' : ''}</span>
                                     </div>
                                 ))}
                                 {dateApps.length > maxAppsToShow && (
-                                    <div className="bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-[9px] sm:text-[10px] px-1 sm:px-1.5 py-0.5 rounded font-medium border-l-2 border-emerald-500 dark:border-emerald-400">
+                                    <div className="bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-[8px] sm:text-[9px] md:text-[10px] px-0.5 sm:px-1 md:px-1.5 py-0.5 rounded font-medium border-l-2 border-emerald-500 dark:border-emerald-400">
                                         +{dateApps.length - maxAppsToShow}
                                     </div>
                                 )}
                                 {dateNote && (
-                                    <div className="bg-amber-500/10 dark:bg-amber-500/20 text-amber-700 dark:text-amber-400 text-[9px] sm:text-[10px] px-1 sm:px-1.5 py-0.5 rounded truncate font-medium border-l-2 border-amber-500 dark:border-amber-400 transition-colors">
+                                    <div className="bg-amber-500/10 dark:bg-amber-500/20 text-amber-700 dark:text-amber-400 text-[8px] sm:text-[9px] md:text-[10px] px-0.5 sm:px-1 md:px-1.5 py-0.5 rounded truncate font-medium border-l-2 border-amber-500 dark:border-amber-400 transition-colors">
                                         Note
                                     </div>
                                 )}
